@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Reports - Traffic Kontho</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="my_reports.css" />
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-name">
+      <img src="https://via.placeholder.com/40" alt="Logo" class="logo" />
+      <span>Traffic Kontho</span>
+    </div>
+    <button class="dot-button" id="moreOptions"><i class="bx bx-dots-vertical-rounded"></i></button>
+  </div>
+
+  <!-- Nav Bar -->
+  <div class="nav-bar">
+    <div class="nav-buttons">
+        <a href="dashboard.html" class="nav-btn">Dashboard</a>
+        <a href="report_violation.html" class="nav-btn">Report A Violation</a>
+        <a href="others_report.html" class="nav-btn">Other Reports</a>
+        <a href="messages.html" class="nav-btn">Messages</a>
+        <a href="notifications.html" class="nav-btn">Notifications</a>
+    </div>
+    <div class="header-right">
+        <input type="text" class="search-bar" placeholder="Search..." />
+        
+        <!-- Emergency contacts display -->
+        <span class="emergency-contacts">
+          Emergency: 999 | 112 | 911
+        </span>
+        
+        <span id="user-role">Citizen</span>
+        <a href="#" class="user-profile"><i class="bx bx-user"></i></a>
+      </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sideNav">
+    <a href="#" class="sidebar-btn back-btn">← Back</a>
+    <a href="my_reports.html" class="sidebar-btn">My Reports</a>
+    <a href="profile.html" class="sidebar-btn">Profile</a>
+    <a href="settings.html" class="sidebar-btn">Settings</a>
+    <a href="index.html" class="sidebar-btn">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <h2>My Reports</h2>
+    <div class="report-list" id="reportList">
+      <!-- Reports injected by JS -->
+    </div>
+  </div>
+
+  <!-- Report Modal -->
+<div id="reportModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p><strong>Date & Time:</strong> <span id="modalDateTime"></span></p>
+      <p id="modalDescription"></p>
+      <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+      <p><strong>Location:</strong> <span id="modalLocation">Not provided</span></p>
+      <div id="modalPhotos"></div>
+      <div id="modalVideos"></div>
+    </div>
+  </div>
+  
+
+  <script src="my_reports.js"></script>
+</body>
+</html>

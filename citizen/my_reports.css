@@ -1,0 +1,338 @@
+/* Reset and base styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+  }
+  
+  /* Top Bar */
+  .top-bar {
+    background: linear-gradient(135deg, #2c3e50, #8e44ad);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    user-select: none;
+  }
+  
+  .logo-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo-name .logo {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  
+  .dot-button {
+    position: absolute;
+    left: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Nav Bar */
+  .nav-bar {
+    background: linear-gradient(135deg, #2c3e50, #8e44ad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    user-select: none;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background 0.5s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .nav-btn:hover {
+    background-color: #2c3e50;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-bar {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+  
+  #user-role {
+    font-weight: 600;
+  }
+  
+  .user-profile {
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 110px;
+    left: -220px;
+    width: 200px;
+    height: calc(100% - 110px);
+    background: linear-gradient(135deg, #2c3e50, #8e44ad);
+    color: white;
+    padding: 20px 10px;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    border-radius: 0 8px 8px 0;
+    font-weight: 600;
+  }
+  
+  .sidebar.active {
+    left: 0;
+  }
+  
+  .sidebar-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(70, 38, 38, 0.15);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: left;
+    text-decoration: none;
+  }
+  
+  .sidebar-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Main Content */
+  .main {
+    margin-left: 20px;
+    padding: 40px 20px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* Reports List */
+  .report-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .report-card {
+    background: white;
+    border-left: 5px solid #8e44ad;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .report-card:hover {
+    transform: scale(1.01);
+  }
+  
+  .report-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .report-details {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .status-pending {
+    background-color: #f39c12;
+  }
+  
+  .status-inreview {
+    background-color: #3498db;
+  }
+  
+  .status-resolved {
+    background-color: #27ae60;
+  }
+  
+  /* Buttons Container */
+  .report-card > div.button-container {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  /* Show Report Button */
+  .btn-show-report {
+    padding: 8px 16px;
+    background: #7b3fe4;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-show-report:hover {
+    background: #a06eff;
+  }
+  
+  /* Delete Button */
+  .btn-delete-report {
+    padding: 8px 16px;
+    background: #e74c3c;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-delete-report:hover {
+    background: #ff6659;
+  }
+  
+  /* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1500;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    font-family: Arial, sans-serif;
+    display: none;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    box-shadow: 0 8px 30px rgba(123, 63, 228, 0.2);
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+  }
+  
+  .close-btn:hover {
+    color: #7b3fe4;
+  }
+  
+  #modalPhotos img {
+    max-width: 100px;
+    margin: 8px 10px 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  #modalVideos video {
+    max-width: 100%;
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  /* Buttons */
+  .btn-show-report {
+    padding: 6px 14px;
+    background: #7b3fe4;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  
+  .btn-show-report:hover {
+    background: #a06eff;
+  }
+  
+  .btn-delete-report {
+    padding: 6px 14px;
+    background: #e74c3c;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .btn-delete-report:hover {
+    background: #ff6659;
+  }
+  
+  /* Container for buttons inside report card */
+  .button-container {
+    margin-top: 12px;
+  }
+  .emergency-contacts {
+    margin-left: 15px;
+    font-weight: 700;
+    color: #f5f5f5; /* bright red for emergency */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }

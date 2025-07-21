@@ -140,3 +140,14 @@
     }
   }
   
+
+  .emergency-contacts {
+    margin-left: 15px;
+    font-weight: 700;
+    color: #f5f5f5; /* bright red for emergency */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }

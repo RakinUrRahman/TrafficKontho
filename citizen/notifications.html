@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Traffic Kontho - Notifications</title>
+  <title>Notifications - Traffic Kontho</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="dashboard.css" />
   <link rel="stylesheet" href="notifications.css" />
 </head>
 <body>
+
   <!-- Top bar -->
   <div class="top-bar">
     <div class="logo-name">
@@ -17,40 +17,77 @@
     <button class="dot-button" id="moreOptions"><i class="bx bx-dots-vertical-rounded"></i></button>
   </div>
 
-  <!-- Nav bar -->
+  <!-- Navigation -->
   <div class="nav-bar">
     <div class="nav-buttons">
       <a href="dashboard.html" class="nav-btn">Dashboard</a>
-      <a href="report-violation.html" class="nav-btn">Report A Violation</a>
-      <a href="other-reports.html" class="nav-btn">Other Reports</a>
+      <a href="report_violation.html" class="nav-btn">Report A Violation</a>
+      <a href="others_report.html" class="nav-btn">Other Reports</a>
       <a href="messages.html" class="nav-btn">Messages</a>
-      <a href="notifications.html" class="nav-btn active">Notifications</a>
+      <a href="notifications.html" class="nav-btn">Notifications</a>
     </div>
+
     <div class="header-right">
-      <input type="text" class="search-bar" placeholder="Search notifications..." />
+      <input type="text" class="search-bar" placeholder="Search..." />
+      
+      <!-- Emergency contacts display -->
+      <span class="emergency-contacts">
+        Emergency: 999 | 112 | 911
+      </span>
+      
       <span id="user-role">Citizen</span>
       <a href="#" class="user-profile"><i class="bx bx-user"></i></a>
     </div>
-  </div>
+</div>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sideNav">
     <a href="#" class="sidebar-btn back-btn">← Back</a>
-    <a href="my-reports.html" class="sidebar-btn">My Reports</a>
+    <a href="my_reports.html" class="sidebar-btn">My Reports</a>
     <a href="profile.html" class="sidebar-btn">Profile</a>
     <a href="settings.html" class="sidebar-btn">Settings</a>
-    <a href="logout.html" class="sidebar-btn">Logout</a>
+    <a href="index.html" class="sidebar-btn">Logout</a>
   </div>
 
-  <!-- Main content -->
+  <!-- Main Content -->
   <div class="main">
     <h2>Notifications</h2>
-    <div class="notifications-list" id="notificationsList">
-      <!-- Notifications will be injected here by JS -->
+
+    <div class="notifications-container">
+      <div class="notification-card">
+        <i class="bx bx-check-circle icon success"></i>
+        <div>
+          <p><strong>Your report #12984 has been resolved.</strong></p>
+          <span class="time">2 hours ago</span>
+        </div>
+      </div>
+
+      <div class="notification-card">
+        <i class="bx bx-comment-detail icon info"></i>
+        <div>
+          <p><strong>New comment on your report: "Illegal parking on 7th Street".</strong></p>
+          <span class="time">5 hours ago</span>
+        </div>
+      </div>
+
+      <div class="notification-card">
+        <i class="bx bx-error-circle icon warning"></i>
+        <div>
+          <p><strong>Your submitted video couldn't be verified. Please upload a clearer version.</strong></p>
+          <span class="time">1 day ago</span>
+        </div>
+      </div>
+
+      <div class="notification-card">
+        <i class="bx bx-like icon support"></i>
+        <div>
+          <p><strong>Your report received 12 new upvotes!</strong></p>
+          <span class="time">3 days ago</span>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="dashboard.js"></script>
-  <script src="notifications.js"></script>
 </body>
 </html>

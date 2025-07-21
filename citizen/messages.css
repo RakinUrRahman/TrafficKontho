@@ -159,4 +159,14 @@
     background-color: rgba(140, 69, 172, 0.6);
     border-radius: 4px;
   }
+  .emergency-contacts {
+    margin-left: 15px;
+    font-weight: 700;
+    color: #f5f5f5; /* bright red for emergency */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
   

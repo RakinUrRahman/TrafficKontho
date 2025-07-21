@@ -6,6 +6,11 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="dashboard.css" />
   <link rel="stylesheet" href="messages.css" />
+  <!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<!-- Firebase Realtime Database -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
 </head>
 <body>
   <!-- Top Bar -->
@@ -21,25 +26,31 @@
   <div class="nav-bar">
     <div class="nav-buttons">
       <a href="dashboard.html" class="nav-btn">Dashboard</a>
-      <a href="report-violation.html" class="nav-btn">Report A Violation</a>
-      <a href="other-reports.html" class="nav-btn">Other Reports</a>
-      <a href="messages.html" class="nav-btn active">Messages</a>
+      <a href="report_violation.html" class="nav-btn">Report A Violation</a>
+      <a href="others_report.html" class="nav-btn">Other Reports</a>
+      <a href="messages.html" class="nav-btn">Messages</a>
       <a href="notifications.html" class="nav-btn">Notifications</a>
     </div>
     <div class="header-right">
       <input type="text" class="search-bar" placeholder="Search..." />
+      
+      <!-- Emergency contacts display -->
+      <span class="emergency-contacts">
+        Emergency: 999 | 112 | 911
+      </span>
+      
       <span id="user-role">Citizen</span>
       <a href="#" class="user-profile"><i class="bx bx-user"></i></a>
     </div>
-  </div>
+</div>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sideNav">
     <a href="#" class="sidebar-btn back-btn">← Back</a>
-    <a href="my-reports.html" class="sidebar-btn">My Reports</a>
+    <a href="my_reports.html" class="sidebar-btn">My Reports</a>
     <a href="profile.html" class="sidebar-btn">Profile</a>
     <a href="settings.html" class="sidebar-btn">Settings</a>
-    <a href="logout.html" class="sidebar-btn">Logout</a>
+    <a href="index.html" class="sidebar-btn">Logout</a>
   </div>
 
   <!-- Main Messages Content -->

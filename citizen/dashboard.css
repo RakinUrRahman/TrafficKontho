@@ -91,6 +91,18 @@ body {
     border: none;
     outline: none;
   }
+
+  .emergency-contacts {
+    margin-left: 15px;
+    font-weight: 700;
+    color: #f4f4f4; /* bright red for emergency */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  
   
   #user-role {
     font-weight: 600;
