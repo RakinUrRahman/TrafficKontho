@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Traffic Kontho Dashboard</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <!-- Top bar with dot button, logo, and app name centered -->
+  <div class="top-bar">
+    <div class="logo-name">
+      <img src="../c5ce3bd1-dba1-4666-9bbd-9f810d4f1b92.png" alt="Logo" class="logo" />
+      <span>Traffic Kontho</span>
+    </div>
+    <button class="dot-button" id="moreOptions"><i class="bx bx-dots-vertical-rounded"></i></button>
+
+  </div>
+
+  <!-- Horizontal nav bar -->
+  <div class="nav-bar">
+    <div class="nav-buttons">
+        <a href="dashboard.html" class="nav-btn">Dashboard</a>
+        <a href="report_violation.html" class="nav-btn">Report A Violation</a>
+        <a href="other_reports.html" class="nav-btn">Other Reports</a>
+        <a href="messages.html" class="nav-btn">Messages</a>
+        <a href="notifications.html" class="nav-btn">Notifications</a>
+      </div>
+      
+    <div class="header-right">
+      <input type="text" class="search-bar" placeholder="Search..." />
+      <span id="user-role">Citizen</span>
+      <a href="#" class="user-profile"><i class="bx bx-user"></i></a>
+    </div>
+  </div>
+
+  <!-- Sidebar Popup -->
+  <div class="sidebar" id="sideNav">
+    <a href="dashboard.html" class="sidebar-btn back-btn">← Back</a>
+    <a href="my_reports.html" class="sidebar-btn">My Reports</a> 
+    <a href="profile.html" class="sidebar-btn">Profile</a>
+    <a href="settings.html" class="sidebar-btn">Settings</a>
+    <a href="logout.html" class="sidebar-btn">Logout</a>
+    
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <h2>Welcome to Traffic Kontho</h2>
+    <p>Your dashboard for reporting and tracking traffic violations.</p>
+  </div>
+
+  <!-- Summary Cards -->
+<div class="summary-cards">
+    <div class="card total-reports">
+      <h3>Total Reports</h3>
+      <p>1,245</p>
+    </div>
+    <div class="card pending-reports">
+      <h3>Pending</h3>
+      <p>58</p>
+    </div>
+    <div class="card resolved-reports">
+      <h3>Resolved</h3>
+      <p>1,120</p>
+    </div>
+  </div>
+  
+  <!-- Recent Reports Table -->
+  <section class="recent-reports">
+    <h3>Recent Reports</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#1045</td>
+          <td>Speeding</td>
+          <td>2025-07-18</td>
+          <td><span class="status pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>#1044</td>
+          <td>Illegal Parking</td>
+          <td>2025-07-17</td>
+          <td><span class="status resolved">Resolved</span></td>
+        </tr>
+        <tr>
+          <td>#1043</td>
+          <td>Red Light Violation</td>
+          <td>2025-07-16</td>
+          <td><span class="status resolved">Resolved</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <!-- Statistics -->
+<section class="statistics">
+    <h3>Statistics</h3>
+    <div class="stat">
+      <span>Resolved Reports</span>
+      <div class="progress-bar">
+        <div class="progress resolved" style="width: 75%;"></div>
+      </div>
+      <span>75%</span>
+    </div>
+    <div class="stat">
+      <span>Pending Reports</span>
+      <div class="progress-bar">
+        <div class="progress pending" style="width: 15%;"></div>
+      </div>
+      <span>15%</span>
+    </div>
+    <div class="stat">
+      <span>New Reports</span>
+      <div class="progress-bar">
+        <div class="progress new" style="width: 10%;"></div>
+      </div>
+      <span>10%</span>
+    </div>
+  </section>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

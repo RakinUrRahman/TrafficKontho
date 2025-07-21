@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Traffic Kontho - Messages</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="messages.css" />
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-name">
+      <img src="../c5ce3bd1-dba1-4666-9bbd-9f810d4f1b92.png" alt="Logo" class="logo" />
+      <span>Traffic Kontho</span>
+    </div>
+    <button class="dot-button" id="moreOptions"><i class="bx bx-dots-vertical-rounded"></i></button>
+  </div>
+
+  <!-- Nav Bar -->
+  <div class="nav-bar">
+    <div class="nav-buttons">
+      <a href="dashboard.html" class="nav-btn">Dashboard</a>
+      <a href="report-violation.html" class="nav-btn">Report A Violation</a>
+      <a href="other-reports.html" class="nav-btn">Other Reports</a>
+      <a href="messages.html" class="nav-btn active">Messages</a>
+      <a href="notifications.html" class="nav-btn">Notifications</a>
+    </div>
+    <div class="header-right">
+      <input type="text" class="search-bar" placeholder="Search..." />
+      <span id="user-role">Citizen</span>
+      <a href="#" class="user-profile"><i class="bx bx-user"></i></a>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sideNav">
+    <a href="#" class="sidebar-btn back-btn">← Back</a>
+    <a href="my-reports.html" class="sidebar-btn">My Reports</a>
+    <a href="profile.html" class="sidebar-btn">Profile</a>
+    <a href="settings.html" class="sidebar-btn">Settings</a>
+    <a href="logout.html" class="sidebar-btn">Logout</a>
+  </div>
+
+  <!-- Main Messages Content -->
+  <div class="main">
+    <div class="messages-container">
+      <div class="contacts-list" id="contactsList"></div>
+      <div class="chat-area">
+        <div class="chat-header" id="chatHeader">Select a contact</div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Type a message..." disabled />
+          <button id="sendBtn" class="send-btn" disabled>Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script src="messages.js"></script>
+</body>
+</html>
