@@ -1,90 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- ===== CSS ===== -->
-        <link rel="stylesheet" href="styles.css">
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="styles.css" />
 
-        <!-- ===== BOX ICONS ===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+  <!-- ===== BOX ICONS ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
 
-        <title>Login form responsive</title>  
-    </head>
-    <body>
-        <div class="l-form">
-            <div class="shape1"></div>
-            <div class="shape2"></div>
+  <title>Login form responsive</title>
+</head>
+<body>
+  <div class="l-form">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
 
-            <div class="form">
-                <img src="c5ce3bd1-dba1-4666-9bbd-9f810d4f1b92.png" alt="" class="form__img">
+    <div class="form">
+      <img src="c5ce3bd1-dba1-4666-9bbd-9f810d4f1b92.png" alt="" class="form__img" />
 
-                <form action="" class="form__content">
-                    <h1 class="form__title">Welcome</h1>
+      <!-- ✅ Updated with ID -->
+      <form action="#" class="form__content" id="login-form">
+        <h1 class="form__title">Welcome</h1>
 
-                    <div class="form__div form__div-one">
-                        <div class="form__icon">
-                            <i class='bx bx-user-circle'></i>
-                        </div>
-
-                        <div class="form__div-input">
-                            <label for="" class="form__label">Username</label>
-                            <input type="text" class="form__input">
-                        </div>
-                    </div>
-
-                    <div class="form__div">
-                        <div class="form__icon">
-                            <i class='bx bx-lock' ></i>
-                        </div>
-
-                        <div class="form__div-input">
-                            <label for="" class="form__label">Password</label>
-                            <input type="password" class="form__input">
-                        </div>
-                    </div>
-
-<!-- Role Combo Box (Select Dropdown) -->
-                    <div class="form__div">
-                        <div class="form__icon">
-                            <i class='bx bx-user'></i>
-                        </div>
-
-                        <div class="form__div-input">
-                            <label for="role" class="form__label">Role (Citizen/Admin/Police/Guest)</label>
-                            <select class="form__input" id="role" required>
-                                <option value="" disabled selected>Select Role</option>
-                                <option value="citizen">Citizen</option>
-                                <option value="admin">Admin</option>
-                                <option value="police">Police</option>
-                                <option value="guest">Guest</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    
-                    
-
-                    
-                    <a href="#" class="form__forgot">Forgot Password?</a>
-
-                    <input type="submit" class="form__button" value="Login">
-
-                    <div class="form__social">
-                        <span class="form__social-text">Our login with</span>
-
-                        <a href="#" class="form__social-icon"><i class='bx bxl-facebook' ></i></a>
-                        <a href="#" class="form__social-icon"><i class='bx bxl-google' ></i></a>
-                        <a href="#" class="form__social-icon"><i class='bx bxl-instagram' ></i></a>
-                    </div>
-                </form>
-            </div>
-
+        <div class="form__div form__div-one">
+          <div class="form__icon">
+            <i class="bx bx-user-circle"></i>
+          </div>
+          <div class="form__div-input">
+            <label for="username" class="form__label">Username</label>
+            <input type="text" class="form__input" id="username" required />
+          </div>
         </div>
-        
-        <!-- ===== MAIN JS ===== -->
-        <script src="main.js"></script>
-    </body>
+
+        <div class="form__div">
+          <div class="form__icon">
+            <i class="bx bx-lock"></i>
+          </div>
+          <div class="form__div-input">
+            <label for="password" class="form__label">Password</label>
+            <input type="password" class="form__input" id="password" required />
+          </div>
+        </div>
+
+        <!-- ✅ Role Combo Box -->
+        <div class="form__div">
+          <div class="form__icon">
+            <i class="bx bx-user"></i>
+          </div>
+          <div class="form__div-input">
+            <label for="role" class="form__label">Role (Citizen/Admin/Police/Guest)</label>
+            <select class="form__input" id="role" required>
+              <option value="" disabled selected>Select Role</option>
+              <option value="citizen">Citizen</option>
+              <option value="admin">Admin</option>
+              <option value="police">Police</option>
+              <option value="guest">Guest</option>
+            </select>
+          </div>
+        </div>
+
+        <a href="#" class="form__forgot">Forgot Password?</a>
+        <input type="submit" class="form__button" value="Login" />
+
+        <div class="form__social">
+          <span class="form__social-text">Or login with</span>
+          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-facebook"></i></a>
+          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-google"></i></a>
+          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-instagram"></i></a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ MAIN JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("login-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value.toLowerCase();
+
+        switch (role) {
+          case "citizen":
+            window.location.href = "citizen/dashboard.html";
+            break;
+          case "admin":
+            window.location.href = "admin/dashboard.html";
+            break;
+          case "police":
+            window.location.href = "police/dashboard.html";
+            break;
+          case "guest":
+            window.location.href = "guest/dashboard.html";
+            break;
+          default:
+            alert("Invalid role. Please select a valid role.");
+            return;
+        }
+
+        document.getElementById("login-form").reset();
+      });
+
+      // Focus/Blur effects
+      const inputs = document.querySelectorAll(".form__input");
+
+      function addfocus() {
+        let parent = this.parentNode.parentNode;
+        parent.classList.add("focus");
+      }
+
+      function remfocus() {
+        let parent = this.parentNode.parentNode;
+        if (this.value === "") {
+          parent.classList.remove("focus");
+        }
+      }
+
+      inputs.forEach((input) => {
+        input.addEventListener("focus", addfocus);
+        input.addEventListener("blur", remfocus);
+      });
+    });
+  </script>
+</body>
 </html>
