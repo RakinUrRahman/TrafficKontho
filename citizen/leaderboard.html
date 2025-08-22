@@ -595,20 +595,20 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="dashboard.html" class="logo" onclick="showPage('dashboard')">
+            <a href="leaderboard.html" class="logo" onclick="showPage('leaderboard')">
                 🚦 Traffic Kontho
             </a>
             
             <nav>
                 <ul class="nav-menu">
-                  <li><a href="/citizen/dashboard.html" onclick="showPage('dashboard')" >🏠 Dashboard</a></li>
-                  <li><a href="/citizen/submit_report.html" onclick="showPage('reports')">📋 Submit A Report</a></li>
-                  <li><a href="/citizen/all_report.html" onclick="showPage('reports')">📋 All Reports</a></li>
-                  <li><a href="/citizen/my_reports.html" onclick="showPage('my-reports')">📝 My Reports</a></li>
-                  <li><a href="/citizen/heatmap.html" onclick="showPage('heatmap')">🗺️ Heat Map</a></li>
-                  <li><a href="/citizen/leaderboard.html" onclick="showPage('leaderboard')">🏆 Leaderboard</a></li>
-                  <li><a href="/citizen/notifications.html" onclick="showPage('notifications')">🔔 Notifications</a></li>
-                  <li><a href="/citizen/messages.html" onclick="showPage('messages')">💬 Messages</a></li>
+                    <li><a href="/citizen/dashboard.html" onclick="showPage('dashboard')" >🏠 Dashboard</a></li>
+                    <li><a href="/citizen/submit_report.html" onclick="showPage('reports')">📋 Submit A Report</a></li>
+                    <li><a href="/citizen/all_report.html" onclick="showPage('reports')">📋 All Reports</a></li>
+                    <li><a href="/citizen/my_reports.html" onclick="showPage('my-reports')">📝 My Reports</a></li>
+                    <li><a href="/citizen/heatmap.html" onclick="showPage('heatmap')">🗺️ Heat Map</a></li>
+                    <li><a href="/citizen/leaderboard.html" onclick="showPage('leaderboard')">🏆 Leaderboard</a></li>
+                    <li><a href="/citizen/notifications.html" onclick="showPage('notifications')">🔔 Notifications</a></li>
+                    <li><a href="/citizen/messages.html" onclick="showPage('messages')">💬 Messages</a></li>
                 </ul>
             </nav>
             
@@ -625,60 +625,59 @@
         </div>
     </header>
 
-   <!-- Notifications Page -->
-<div id="notifications" class="page-content">
-  <div class="page-header">
-      <h1 class="page-title">🔔 Notifications</h1>
-      <p class="page-subtitle">Stay up to date with the latest updates and messages</p>
-  </div>
+<!-- Main Container -->
+<div class="main-container">
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page-content active">
+        <div class="page-header">
+            <h1 class="page-title">🏠 Welcome to Traffic Kontho</h1>
+            <p class="page-subtitle">Help make our roads safer by reporting traffic incidents and issues</p>
+        </div>
+    </div>
 
-  <div class="card">
-      <!-- Notification Item 1 -->
-      <div class="notification-item">
-          <div class="notification-header">
-              <div class="notification-title">New Traffic Incident Report</div>
-              <div class="notification-time">2 hours ago</div>
-          </div>
-          <div class="notification-content">
-              <p>You have a new report about a traffic incident on Main Street. Please review it and take necessary action.</p>
-          </div>
-          <div class="notification-actions">
-              <button class="btn btn-info">View Report</button>
-              <button class="btn btn-danger">Dismiss</button>
-          </div>
-      </div>
+    <!-- Leaderboard Page -->
+    <div id="leaderboard" class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">🏆 Leaderboard</h1>
+            <p class="page-subtitle">See the top contributors in making our roads safer!</p>
+        </div>
 
-      <!-- Notification Item 2 -->
-      <div class="notification-item">
-          <div class="notification-header">
-              <div class="notification-title">Traffic Report Update</div>
-              <div class="notification-time">4 hours ago</div>
-          </div>
-          <div class="notification-content">
-              <p>Your traffic report on Elm Street has been verified and closed. Thank you for your contribution.</p>
-          </div>
-          <div class="notification-actions">
-              <button class="btn btn-info">View Details</button>
-              <button class="btn btn-danger">Dismiss</button>
-          </div>
-      </div>
+        <div class="card">
+            <!-- Leaderboard Items -->
+            <div class="leaderboard-item">
+                <div class="rank">1</div>
+                <div class="user-details">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-stats">5 Reports | 200 Points</div>
+                </div>
+                <div class="user-points">🏆 200</div>
+            </div>
 
-      <!-- Notification Item 3 -->
-      <div class="notification-item">
-          <div class="notification-header">
-              <div class="notification-title">New Leaderboard Position</div>
-              <div class="notification-time">1 day ago</div>
-          </div>
-          <div class="notification-content">
-              <p>Congratulations! You have moved up to position 3 in the leaderboard for the most traffic reports submitted.</p>
-          </div>
-          <div class="notification-actions">
-              <button class="btn btn-info">View Leaderboard</button>
-              <button class="btn btn-danger">Dismiss</button>
-          </div>
-      </div>
-  </div>
-  <script>
+            <div class="leaderboard-item">
+                <div class="rank">2</div>
+                <div class="user-details">
+                    <div class="user-name">Jane Smith</div>
+                    <div class="user-stats">4 Reports | 180 Points</div>
+                </div>
+                <div class="user-points">🏆 180</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div class="rank">3</div>
+                <div class="user-details">
+                    <div class="user-name">Samuel Green</div>
+                    <div class="user-stats">3 Reports | 150 Points</div>
+                </div>
+                <div class="user-points">🏆 150</div>
+            </div>
+
+            <!-- Add more leaderboard items as necessary -->
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to control page visibility -->
+<script>
     // Function to toggle between different pages
     function showPage(pageId) {
         // Hide all pages
@@ -686,7 +685,7 @@
         pages.forEach(page => {
             page.classList.remove('active');
         });
-
+        
         // Show the selected page
         const activePage = document.getElementById(pageId);
         if (activePage) {
@@ -696,9 +695,10 @@
 
     // Optional: Show the default page when the page loads
     document.addEventListener('DOMContentLoaded', function () {
-        showPage('notifications'); // You can change this to 'messages' if you want the messages page to be visible by default.
+        showPage('leaderboard'); // You can change this to 'leaderboard' if you want the leaderboard page to be visible by default.
     });
 </script>
 
-</div>
+
+
 </body></html>

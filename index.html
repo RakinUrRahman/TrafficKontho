@@ -1,130 +1,1329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Kontho - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- ===== CSS ===== -->
-  <link rel="stylesheet" href="styles.css" />
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
 
-  <!-- ===== BOX ICONS ===== -->
-  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-  <title>Login form responsive</title>
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            position: relative;
+            padding: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-icon:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.05);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff6b6b;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .user-profile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .points-display {
+            background: linear-gradient(45deg, #ffa726, #ff9800);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 167, 38, 0.3);
+        }
+
+        /* Main Content Styles */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #6c757d, #5a6268);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #51cf66, #40c057);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffa726, #ff9800);
+        }
+
+        /* Report Styles */
+        .report-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+
+        .report-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .report-item.pending { border-left-color: #ffa726; }
+        .report-item.verified { border-left-color: #51cf66; }
+        .report-item.handled { border-left-color: #667eea; }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .report-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .report-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-verified { background: #d1ecf1; color: #0c5460; }
+        .status-handled { background: #d4edda; color: #155724; }
+
+        .report-content {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: none;
+            border: 2px solid #e0e0e0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Leaderboard Styles */
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .rank {
+            background: linear-gradient(45deg, #ffa726, #ff9800);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .user-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .user-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .user-stats {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .user-points {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Heatmap Styles */
+        .heatmap-container {
+            height: 400px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #666;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .user-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .report-header {
+                flex-direction: column;
+            }
+
+            .report-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+    </style>
 </head>
 <body>
-  <div class="l-form">
-    <div class="shape1"></div>
-    <div class="shape2"></div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="dashboard.html" class="logo" onclick="showPage('dashboard')">
+                🚦 Traffic Kontho
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                  <li><a href="/citizen/dashboard.html" onclick="showPage('dashboard')" >🏠 Dashboard</a></li>
+                  <li><a href="/citizen/submit_report.html" onclick="showPage('reports')">📋 Submit A Report</a></li>
+                  <li><a href="/citizen/all_report.html" onclick="showPage('reports')">📋 All Reports</a></li>
+                  <li><a href="/citizen/my_reports.html" onclick="showPage('my-reports')">📝 My Reports</a></li>
+                  <li><a href="/citizen/heatmap.html" onclick="showPage('heatmap')">🗺️ Heat Map</a></li>
+                  <li><a href="/citizen/leaderboard.html" onclick="showPage('leaderboard')">🏆 Leaderboard</a></li>
+                  <li><a href="/citizen/notifications.html" onclick="showPage('notifications')">🔔 Notifications</a></li>
+                  <li><a href="/citizen/messages.html" onclick="showPage('messages')">💬 Messages</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-info">
+                <div class="notification-icon" onclick="showPage('notifications')">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="points-display">🏆 1,250 Points</div>
+                <div class="user-profile" onclick="showPage('profile')">
+                    👤 জন ডো
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div class="form">
-      <img src="c5ce3bd1-dba1-4666-9bbd-9f810d4f1b92.png" alt="" class="form__img" />
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page-content active">
+            <div class="page-header">
+                <h1 class="page-title">🏠 Welcome to Traffic Kontho</h1>
+                <p class="page-subtitle">Help make our roads safer by reporting traffic incidents and issues</p>
+            </div>
 
-      <!-- ✅ Updated with ID -->
-      <form action="#" class="form__content" id="login-form">
-        <h1 class="form__title">Welcome</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">My Reports Submitted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Reports Verified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,250</div>
+                    <div class="stat-label">Total Points Earned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4th</div>
+                    <div class="stat-label">Leaderboard Rank</div>
+                </div>
+            </div>
 
-        <div class="form__div form__div-one">
-          <div class="form__icon">
-            <i class="bx bx-user-circle"></i>
-          </div>
-          <div class="form__div-input">
-            <label for="username" class="form__label">Username</label>
-            <input type="text" class="form__input" id="username" required />
-          </div>
+            <div class="card">
+                <h3>🚀 Quick Actions</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <button class="btn" onclick="openReportModal()">
+                        📝 Submit New Report
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('reports')">
+                        📋 View All Reports
+                    </button>
+                    <button class="btn btn-warning" onclick="showPage('heatmap')">
+                        🗺️ View Heat Map
+                    </button>
+                    <button class="btn btn-success" onclick="showPage('leaderboard')">
+                        🏆 Check Leaderboard
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Recent Activity</h3>
+                <div style="margin-top: 20px;">
+                    <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #51cf66;">
+                        <strong>Your report verified!</strong><br>
+                        <small>Traffic jam report at Dhanmondi 27 was verified by authorities - You earned 75 points!</small>
+                        <div style="color: #666; font-size: 12px; margin-top: 5px;">2 hours ago</div>
+                    </div>
+                    <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #667eea;">
+                        <strong>New comment on your report</strong><br>
+                        <small>Someone commented on your accident report at Science Lab intersection</small>
+                        <div style="color: #666; font-size: 12px; margin-top: 5px;">5 hours ago</div>
+                    </div>
+                    <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #ffa726;">
+                        <strong>Points milestone reached!</strong><br>
+                        <small>Congratulations! You've earned 1,250 points and unlocked mobile recharge reward</small>
+                        <div style="color: #666; font-size: 12px; margin-top: 5px;">1 day ago</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form__div">
-          <div class="form__icon">
-            <i class="bx bx-lock"></i>
-          </div>
-          <div class="form__div-input">
-            <label for="password" class="form__label">Password</label>
-            <input type="password" class="form__input" id="password" required />
-          </div>
+        <!-- All Reports Page -->
+        <div id="reports" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">📋 All Traffic Reports</h1>
+                <p class="page-subtitle">Community reported traffic incidents and issues</p>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 20px; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <select class="form-select" id="filter-type">
+                            <option value="">All Report Types</option>
+                            <option value="accident">🚗 Traffic Accidents</option>
+                            <option value="jam">🚧 Traffic Jams</option>
+                            <option value="violation">⚠️ Traffic Violations</option>
+                            <option value="construction">🏗️ Road Construction</option>
+                            <option value="emergency">🚨 Emergency Situations</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <select class="form-select" id="filter-status">
+                            <option value="">All Statuses</option>
+                            <option value="pending">⏳ Pending</option>
+                            <option value="verified">✅ Verified</option>
+                            <option value="handled">✅ Handled</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="openReportModal()">📝 Submit Report</button>
+                </div>
+
+                <div id="reports-list">
+                    <div class="report-item verified">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">🚗 Major Traffic Accident</div>
+                                <div class="report-meta">
+                                    <span>📍 Dhanmondi 27, Dhaka</span>
+                                    <span>👤 রহিম উদ্দিন</span>
+                                    <span>🕒 2 hours ago</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-verified">Verified</span>
+                        </div>
+                        <div class="report-content">
+                            Major accident at Dhanmondi 27 intersection. Two cars involved, traffic completely blocked. Ambulance and police arrived on scene.
+                        </div>
+                        <div class="report-actions">
+                            <button class="action-btn">👍 Like (15)</button>
+                            <button class="action-btn">💬 Comment (8)</button>
+                            <button class="action-btn">📍 View Location</button>
+                            <button class="action-btn">⚡ Verify Report</button>
+                        </div>
+                    </div>
+
+                    <div class="report-item pending">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">🚧 Heavy Traffic Jam</div>
+                                <div class="report-meta">
+                                    <span>📍 Mirpur Road, Dhaka</span>
+                                    <span>👤 ফাতেমা খাতুন</span>
+                                    <span>🕒 45 minutes ago</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-pending">Pending</span>
+                        </div>
+                        <div class="report-content">
+                            Severe traffic congestion on Mirpur Road due to ongoing construction work. Expect significant delays.
+                        </div>
+                        <div class="report-actions">
+                            <button class="action-btn">👍 Like (8)</button>
+                            <button class="action-btn">💬 Comment (3)</button>
+                            <button class="action-btn">📍 View Location</button>
+                            <button class="action-btn">⚡ Verify Report</button>
+                        </div>
+                    </div>
+
+                    <div class="report-item handled">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">⚠️ Traffic Light Malfunction</div>
+                                <div class="report-meta">
+                                    <span>📍 Science Lab, Dhaka</span>
+                                    <span>👤 করিম আহমেদ</span>
+                                    <span>🕒 3 hours ago</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-handled">Handled</span>
+                        </div>
+                        <div class="report-content">
+                            Traffic lights at Science Lab intersection not working properly. Vehicles running red lights frequently.
+                        </div>
+                        <div class="report-actions">
+                            <button class="action-btn">👍 Like (22)</button>
+                            <button class="action-btn">💬 Comment (12)</button>
+                            <button class="action-btn">📍 View Location</button>
+                            <button class="action-btn">✅ Handled</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- ✅ Role Combo Box -->
-        <div class="form__div">
-          <div class="form__icon">
-            <i class="bx bx-user"></i>
-          </div>
-          <div class="form__div-input">
-            <label for="role" class="form__label">Role (Citizen/Admin/Police/Guest)</label>
-            <select class="form__input" id="role" required>
-              <option value="" disabled selected>Select Role</option>
-              <option value="citizen">Citizen</option>
-              <option value="admin">Admin</option>
-              <option value="police">Police</option>
-              <option value="guest">Guest</option>
-            </select>
-          </div>
+        <!-- My Reports Page -->
+        <div id="my-reports" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">📝 My Reports</h1>
+                <p class="page-subtitle">Track your submitted traffic reports and their status</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Total Reports</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Pending Review</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Verified</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Handled</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <h3 style="margin: 0;">Your Submitted Reports</h3>
+                    <button class="btn" onclick="openReportModal()">📝 Submit New Report</button>
+                </div>
+
+                <div id="my-reports-list">
+                    <div class="report-item verified">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">🚧 Traffic Jam at Dhanmondi</div>
+                                <div class="report-meta">
+                                    <span>📍 Dhanmondi 27, Dhaka</span>
+                                    <span>🕒 Yesterday, 3:30 PM</span>
+                                    <span>👍 15 likes</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-verified">Verified</span>
+                        </div>
+                        <div class="report-content">
+                            Heavy traffic congestion due to road construction. Estimated 45-minute delay.
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-secondary">📊 View Details</button>
+                            <button class="btn btn-warning">✏️ Edit Report</button>
+                            <button class="btn btn-danger">🗑️ Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="report-item pending">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">🚗 Minor Accident</div>
+                                <div class="report-meta">
+                                    <span>📍 Gulshan Circle 1</span>
+                                    <span>🕒 Today, 10:15 AM</span>
+                                    <span>👍 3 likes</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-pending">Pending</span>
+                        </div>
+                        <div class="report-content">
+                            Minor collision between two vehicles at Gulshan Circle 1. No injuries reported.
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-secondary">📊 View Details</button>
+                            <button class="btn btn-warning">✏️ Edit Report</button>
+                            <button class="btn btn-danger">🗑️ Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="report-item handled">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-title">⚠️ Traffic Signal Issue</div>
+                                <div class="report-meta">
+                                    <span>📍 Farmgate Intersection</span>
+                                    <span>🕒 3 days ago</span>
+                                    <span>👍 28 likes</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-handled">Handled</span>
+                        </div>
+                        <div class="report-content">
+                            Traffic signal not working properly causing confusion among drivers.
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-secondary">📊 View Details</button>
+                            <span style="color: #51cf66; font-weight: bold;">✅ Issue Resolved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <a href="#" class="form__forgot">Forgot Password?</a>
-        <input type="submit" class="form__button" value="Login" />
+        <!-- Heat Map Page -->
+        <div id="heatmap" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🗺️ Traffic Incident Heat Map</h1>
+                <p class="page-subtitle">Visual representation of traffic incidents across Dhaka</p>
+            </div>
 
-        <div class="form__social">
-          <span class="form__social-text">Or login with</span>
-          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-facebook"></i></a>
-          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-google"></i></a>
-          <a href="citizen/dashboard.html" class="form__social-icon"><i class="bx bxl-instagram"></i></a>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                        <select class="form-select" style="width: 200px;">
+                            <option>Last 24 Hours</option>
+                            <option>Last Week</option>
+                            <option>Last Month</option>
+                            <option>Last Year</option>
+                        </select>
+                        <select class="form-select" style="width: 200px;">
+                            <option>All Incident Types</option>
+                            <option>Accidents</option>
+                            <option>Traffic Jams</option>
+                            <option>Road Construction</option>
+                        </select>
+                    </div>
+                    <button class="btn">🔄 Refresh Map</button>
+                </div>
+
+                <div class="heatmap-container">
+                    <div style="text-align: center; color: #666;">
+                        <div style="font-size: 48px; margin-bottom: 20px;">🗺️</div>
+                        <h3 style="margin-bottom: 10px;">Interactive Heat Map</h3>
+                        <p>Traffic incident density visualization would be displayed here</p>
+                        <p style="font-size: 14px; margin-top: 20px;">
+                            🔴 High Density Areas | 🟡 Medium Density | 🟢 Low Density
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div style="background: #ffebee; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4 style="color: #c62828;">🚨 High Risk Areas</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #c62828;">8</div>
+                        <p style="margin: 0; color: #666;">Locations with 10+ incidents</p>
+                    </div>
+                    <div style="background: #fff8e1; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4 style="color: #f57c00;">⚠️ Medium Risk Areas</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #f57c00;">15</div>
+                        <p style="margin: 0; color: #666;">Locations with 5-9 incidents</p>
+                    </div>
+                    <div style="background: #e8f5e8; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4 style="color: #2e7d32;">✅ Safe Areas</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #2e7d32;">23</div>
+                        <p style="margin: 0; color: #666;">Locations with <5 incidents</p>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4 style="color: #1565c0;">📊 Total Reports</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #1565c0;">156</div>
+                        <p style="margin: 0; color: #666;">In selected time period</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- ✅ MAIN JS -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("login-form").addEventListener("submit", function (event) {
-        event.preventDefault();
+        <!-- Leaderboard Page -->
+        <div id="leaderboard" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🏆 Community Leaderboard</h1>
+                <p class="page-subtitle">Top contributors making our roads safer</p>
+            </div>
 
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const role = document.getElementById("role").value.toLowerCase();
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <select class="form-select" style="width: 200px;">
+                            <option>This Month</option>
+                            <option>This Week</option>
+                            <option>All Time</option>
+                        </select>
+                    </div>
+                    <div style="background: linear-gradient(45deg, #ffa726, #ff9800); color: white; padding: 10px 20px; border-radius: 20px; font-weight: bold;">
+                        Your Rank: #4
+                    </div>
+                </div>
 
-        switch (role) {
-          case "citizen":
-            window.location.href = "citizen/dashboard.html";
-            break;
-          case "admin":
-            window.location.href = "admin/dashboard.html";
-            break;
-          case "police":
-            window.location.href = "police/dashboard.html";
-            break;
-          case "guest":
-            window.location.href = "guest/dashboard.html";
-            break;
-          default:
-            alert("Invalid role. Please select a valid role.");
-            return;
-        }
+                <div class="leaderboard-item" style="background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%); color: white;">
+                    <div class="user-details">
+                        <div class="rank">🥇</div>
+                        <div>
+                            <div class="user-name">রহিম উদ্দিন (Rahim Uddin)</div>
+                            <div class="user-stats" style="color: rgba(255,255,255,0.9);">45 Reports • 156 Verifications • 89% Accuracy</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+                        2,850 pts
+                    </div>
+                </div>
 
-        document.getElementById("login-form").reset();
-      });
+                <div class="leaderboard-item" style="background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%); color: white;">
+                    <div class="user-details">
+                        <div class="rank">🥈</div>
+                        <div>
+                            <div class="user-name">ফাতেমা খাতুন (Fatema Khatun)</div>
+                            <div class="user-stats" style="color: rgba(255,255,255,0.9);">38 Reports • 124 Verifications • 92% Accuracy</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+                        2,280 pts
+                    </div>
+                </div>
 
-      // Focus/Blur effects
-      const inputs = document.querySelectorAll(".form__input");
+                <div class="leaderboard-item" style="background: linear-gradient(135deg, #cd7f32 0%, #b8860b 100%); color: white;">
+                    <div class="user-details">
+                        <div class="rank">🥉</div>
+                        <div>
+                            <div class="user-name">করিম আহমেদ (Karim Ahmed)</div>
+                            <div class="user-stats" style="color: rgba(255,255,255,0.9);">32 Reports • 98 Verifications • 87% Accuracy</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+                        1,920 pts
+                    </div>
+                </div>
 
-      function addfocus() {
-        let parent = this.parentNode.parentNode;
-        parent.classList.add("focus");
-      }
+                <div class="leaderboard-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <div class="user-details">
+                        <div class="rank">4</div>
+                        <div>
+                            <div class="user-name">জন ডো (John Doe) - You</div>
+                            <div class="user-stats" style="color: rgba(255,255,255,0.9);">25 Reports • 67 Verifications • 85% Accuracy</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+                        1,250 pts
+                    </div>
+                </div>
 
-      function remfocus() {
-        let parent = this.parentNode.parentNode;
-        if (this.value === "") {
-          parent.classList.remove("focus");
-        }
-      }
+                <div class="leaderboard-item">
+                    <div class="user-details">
+                        <div class="rank">5</div>
+                        <div>
+                            <div class="user-name">সালমা বেগম (Salma Begum)</div>
+                            <div class="user-stats">22 Reports • 58 Verifications • 90% Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="user-points">1,120 pts</div>
+                </div>
+            </div>
 
-      inputs.forEach((input) => {
-        input.addEventListener("focus", addfocus);
-        input.addEventListener("blur", remfocus);
-      });
-    });
-  </script>
-</body>
-</html>
+            <div class="card">
+                <h3>🎁 Reward System</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4>🏅 Bronze Tier</h4>
+                        <p>500-999 Points</p>
+                        <small>Mobile Recharge ৳50</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4>🥈 Silver Tier</h4>
+                        <p>1,000-2,499 Points</p>
+                        <small>Gift Voucher ৳200</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4>🥇 Gold Tier</h4>
+                        <p>2,500-4,999 Points</p>
+                        <small>Certificate + ৳500</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                        <h4>💎 Diamond Tier</h4>
+                        <p>5,000+ Points</p>
+                        <small>Recognition Award</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Page -->
+        <div id="messages" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">💬 Community Messages</h1>
+                <p class="page-subtitle">Connect with other community members and authorities</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px; height: 600px;">
+                <div class="card" style="height: fit-content;">
+                    <h4>Conversations</h4>
+                    <div style="margin-top: 15px;">
+                        <div style="padding: 15px; background: #667eea; color: white; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <div style="font-weight: bold;">Traffic Authority</div>
+                            <small>Your report has been reviewed...</small>
+                        </div>
+                        <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <div style="font-weight: bold;">রহিম উদ্দিন</div>
+                            <small>Thanks for the traffic update!</small>
+                        </div>
+                        <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <div style="font-weight: bold;">Community Chat</div>
+                            <small>New message about Gulshan area</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: flex; flex-direction: column; height: 600px;">
+                    <div style="padding-bottom: 15px; border-bottom: 2px solid #f0f0f0; margin-bottom: 15px;">
+                        <h4 style="margin: 0;">Traffic Authority</h4>
+                        <small style="color: #666;">Official Representative</small>
+                    </div>
+
+                    <div style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 12px 12px 12px 4px; margin-bottom: 15px; max-width: 80%;">
+                            <div style="font-size: 14px; margin-bottom: 5px;">Thank you for your report about the traffic accident at Dhanmondi 27. We have dispatched a team to investigate.</div>
+                            <small style="color: #666;">2 hours ago</small>
+                        </div>
+
+                        <div style="background: #667eea; color: white; padding: 12px; border-radius: 12px 12px 4px 12px; margin-bottom: 15px; max-width: 80%; margin-left: auto;">
+                            <div style="font-size: 14px; margin-bottom: 5px;">Thank you for the quick response. The area is still congested. Any updates?</div>
+                            <small style="color: rgba(255,255,255,0.8);">1 hour ago</small>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 12px 12px 12px 4px; margin-bottom: 15px; max-width: 80%;">
+                            <div style="font-size: 14px; margin-bottom: 5px;">The situation has been cleared. Traffic is moving normally now. You've been awarded 75 bonus points for this verified report.</div>
+                            <small style="color: #666;">30 minutes ago</small>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="form-input" placeholder="Type your message..." style="flex: 1; margin: 0;">
+                        <button class="btn">📤 Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Page -->
+        <div id="notifications" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🔔 Notifications</h1>
+                <p class="page-subtitle">Stay updated with your reports and community activity</p>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Recent Notifications</h3>
+                    <button class="btn btn-secondary">✅ Mark All as Read</button>
+                </div>
+
+                <div>
+                    <div style="padding: 15px; background: #e8f5e8; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #51cf66;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-weight: bold; color: #2e7d32;">🎉 Report Verified!</div>
+                                <div style="margin: 5px 0; color: #555;">Your traffic jam report at Dhanmondi 27 has been verified by authorities. You earned 75 points!</div>
+                                <small style="color: #666;">2 hours ago</small>
+                            </div>
+                            <div style="width: 10px; height: 10px; background: #51cf66; border-radius: 50%;"></div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 15px; background: #e3f2fd; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #1976d2;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-weight: bold; color: #1565c0;">💬 New Comment</div>
+                                <div style="margin: 5px 0; color: #555;">রহিম উদ্দিন commented on your accident report: "Thanks for the quick update!"</div>
+                                <small style="color: #666;">5 hours ago</small>
+                            </div>
+                            <div style="width: 10px; height: 10px; background: #1976d2; border-radius: 50%;"></div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 15px; background: #fff3e0; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f57c00;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-weight: bold; color: #ef6c00;">🏆 Achievement Unlocked</div>
+                                <div style="margin: 5px 0; color: #555;">Congratulations! You've reached 1,250 points and unlocked the Silver Tier rewards.</div>
+                                <small style="color: #666;">1 day ago</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 15px; background: #fce4ec; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #e91e63;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-weight: bold; color: #c2185b;">📍 Nearby Incident Alert</div>
+                                <div style="margin: 5px 0; color: #555;">New traffic accident reported 2km from your location at Gulshan Circle 1.</div>
+                                <small style="color: #666;">2 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 15px; background: #f3e5f5; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #9c27b0;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-weight: bold; color: #7b1fa2;">⚡ Report Update</div>
+                                <div style="margin: 5px 0; color: #555;">Your construction work report has been marked as "Handled" by traffic authorities.</div>
+                                <small style="color: #666;">3 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">👤 My Profile</h1>
+                <p class="page-subtitle">Manage your account information and preferences</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 300px 1fr; gap: 30px;">
+                <div class="card" style="text-align: center; height: fit-content;">
+                    <div style="width: 120px; height: 120px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+                        👤
+                    </div>
+                    <h3 style="margin-bottom: 10px;">জন ডো (John Doe)</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Community Member since January 2024</p>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: bold; color: #667eea;">25</div>
+                                <small style="color: #666;">Reports</small>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: bold; color: #51cf66;">18</div>
+                                <small style="color: #666;">Verified</small>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: bold; color: #ffa726;">1,250</div>
+                                <small style="color: #666;">Points</small>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: bold; color: #ff6b6b;">#4</div>
+                                <small style="color: #666;">Rank</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(45deg, #51cf66, #40c057); color: white; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="font-weight: bold;">🥈 Silver Tier</div>
+                        <small>Keep reporting to reach Gold!</small>
+                    </div>
+
+                    <button class="btn">📸 Change Photo</button>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom: 25px;">Personal Information</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name (English)</label>
+                            <input type="text" class="form-input" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Full Name (Bangla)</label>
+                            <input type="text" class="form-input" value="জন ডো">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" value="+880 1712-345678">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" class="form-input" value="1995-06-15">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select class="form-select">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                                <option>Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-textarea" rows="3">House 15, Road 8, Dhanmondi, Dhaka-1205, Bangladesh</textarea>
+                    </div>
+
+                    <h3 style="margin: 30px 0 20px;">Notification Preferences</h3>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 
+                            <span>Email notifications for report status updates</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 
+                            <span>SMS alerts for nearby traffic incidents</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox"> 
+                            <span>Weekly summary of community activity</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 
+                            <span>Push notifications for important updates</span>
+                        </label>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button class="btn">💾 Save Changes</button>
+                        <button class="btn btn-secondary">🔄 Reset</button>
+                        <button class="btn btn-danger">🗑️ Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">⚙️ Settings</h1>
+                <p class="page-subtitle">Customize your Traffic Kontho experience</p>
+            </div>
+
+            <div class="card">
+                <h3>🔔 Notification Settings</h3>
+                <div style="display: grid; gap: 20px; margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div>
+                            <div style="font-weight: bold;">Report Status Updates</div>
+                            <small style="color: #666;">Get notified when your reports are verified or handled</small>
+                        </div>
+                        <label style
